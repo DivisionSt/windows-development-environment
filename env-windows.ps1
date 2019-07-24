@@ -17,13 +17,19 @@ function Update-Environment-Path
 }
 
 #
+# Stupid thing where you have to press enter (at the top for your convenience)
+#
+Install-Module –Name PowerShellGet –Force
+
+
+#
 # Package Managers
 #
-
 # Choco
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 Update-Environment-Path
+
 
 #
 # Git
@@ -220,7 +226,7 @@ if (!(Test-Path 'c:\tmp\fonts')) {
     set-location c:\tmp\fonts
     .\install.ps1
 }
-Install-Module –Name PowerShellGet –Force
+
 Install-Module -Name 'posh-git'
 Install-Module -Name 'oh-my-posh'
 Install-Module -Name 'Get-ChildItemColor'
