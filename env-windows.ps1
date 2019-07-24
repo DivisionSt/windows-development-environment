@@ -327,7 +327,7 @@ choco install resharper --yes
 #
 # Windows Taskbar
 #
-Import-StartLayout TaskBar.xml -MountPath $env:SystemDrive\
+Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
 
 
 Write-Output "Finished! I recommend logging out and back in"
