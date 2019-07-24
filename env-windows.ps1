@@ -17,9 +17,11 @@ function Update-Environment-Path
 }
 
 #
-# Stupid thing where you have to press enter (at the top for your convenience)
+# Stupid things where you might have to press enter (at the top o' script for your convenience)
 #
-Install-Module –Name PowerShellGet –Force
+Install-PackageProvider Nuget -Force
+Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+Install-Module -Name PowerShellGet -Force
 
 
 #
