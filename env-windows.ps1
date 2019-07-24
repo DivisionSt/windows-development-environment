@@ -24,16 +24,24 @@ function Push-User-Path($userPath) {
 }
 
 #
+# Stupid thing where you have to press enter (at the top for your convenience)
+#
+Install-Module –Name PowerShellGet –Force
+
+
+#
 # Package Managers
 #
-
 # Choco
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
 Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
 Update-Environment-Path
 
+<<<<<<< HEAD
 # Utils
 Get-Command -Module Microsoft.PowerShell.Archive
+=======
+>>>>>>> 421eb06... Try to get the one interactive thing to the top
 
 #
 # Git
