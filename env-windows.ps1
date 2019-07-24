@@ -38,6 +38,8 @@ Update-Environment-Path
 #
 choco install git --yes --params '/GitAndUnixToolsOnPath'
 Update-Environment-Path
+choco install git-lfs --yes
+
 git config --global alias.ci 'commit'
 git config --global alias.co 'checkout'
 git config --global alias.st 'status'
@@ -190,6 +192,14 @@ code --install-extension mdickin.markdown-shortcuts
 #
 choco install slack --yes
 choco install notepadplusplus --yes
+choco install notepad3 --yes
+choco install sublimetext3 --yes
+choco install azure-cli --yes
+choco install windirstat --yes
+choco install greenshot --yes
+choco install fiddler --yes
+choco install winmerge --yes
+choco install postman --yes
 # choco install xenulinksleuth --yes
 # File Management
 # choco install beyondcompare --yes
@@ -243,6 +253,7 @@ Set-ExecutionPolicy RemoteSigned
 Unblock-File -Path "..\assets\ConEmu.xml"
 copy-item "..\assets\ConEmu.xml" "$env:ProgramFiles\ConEmu\"
 
+
 #
 # Visual Studio
 #
@@ -251,6 +262,15 @@ choco install visualstudio2019enterprise --yes
 choco install visualstudio2019-workload-azure --yes
 choco install visualstudio2019-workload-netweb --yes
 choco install nuget.commandline --yes
+# choco install resharper-platform --yes
+choco install resharper --yes
 
 
-Write-Output "Finished! Run `choco upgrade all` to get the latest software"
+#
+# Windows Taskbar
+#
+Import-StartLayout TaskBar.xml -MountPath $env:SystemDrive\
+
+
+Write-Output "Finished! I recommend logging out and back in"
+Write-Output "In the future, run `choco upgrade all` to get the latest software"
