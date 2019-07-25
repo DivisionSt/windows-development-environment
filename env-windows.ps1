@@ -266,7 +266,7 @@ if (!(Test-Path 'c:\tmp\fonts')) {
 
 Install-Module -Name 'posh-git'
 Install-Module -Name 'oh-my-posh'
-Install-Module -Name 'Get-ChildItemColor'
+Install-Module -Name 'Get-ChildItemColor' -AllowClobber
 
 # move in a nice powershell profile
 Set-ExecutionPolicy Unrestricted
