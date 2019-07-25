@@ -328,13 +328,14 @@ Add-Content $PROFILE "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Th
 
 # move in a nice powershell profile
 Set-ExecutionPolicy Unrestricted
-Unblock-File -Path "..\assets\Microsoft.PowerShell_profile.ps1"
-copy-item "..\assets\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell\"
+Unblock-File -Path ".\assets\Microsoft.PowerShell_profile.ps1"
+copy-item ".\assets\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell\"
 Set-ExecutionPolicy RemoteSigned
 
 # move in a nice conemu profile=
-Unblock-File -Path "..\assets\ConEmu.xml"
-copy-item "..\assets\ConEmu.xml" "$env:ProgramFiles\ConEmu\"
+Unblock-File -Path ".\assets\ConEmu.xml"
+copy-item ".\assets\ConEmu.xml" "$env:ProgramFiles\ConEmu\"
+copy-item ".\assets\ConEmu.xml" "$env:APPDATA\"
 
 
 #
