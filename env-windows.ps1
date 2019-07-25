@@ -325,6 +325,9 @@ Set-Prompt
 Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
 Add-Content $PROFILE "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
 
+Install-Module -Name 'posh-git'
+Install-Module -Name 'oh-my-posh'
+Install-Module -Name 'Get-ChildItemColor' -AllowClobber
 
 # move in a nice powershell profile
 Set-ExecutionPolicy Unrestricted
