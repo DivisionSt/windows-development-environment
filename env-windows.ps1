@@ -46,6 +46,24 @@ Get-Command -Module Microsoft.PowerShell.Archive
 >>>>>>> 421eb06... Try to get the one interactive thing to the top
 
 #
+# Set some windows explorer settings to be nice to developers
+#
+# Navigate registry
+Push-Location
+Set-Location HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+
+# Show file extensions
+Set-ItemProperty . HideFileExt "0"
+# Show hidden files
+Set-ItemProperty . Hidden "1"
+
+Pop-Location
+
+# Force Windows Explorer restart so settings take effect
+Stop-Process -processName: Explorer -force
+
+
+#
 # Git
 #
 choco install git --yes --params '/GitAndUnixToolsOnPath'
@@ -328,7 +346,7 @@ choco install resharper --yes
 # Windows Taskbar
 #
 Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
+# Force Windows Explorer restart so settings take effect
+Stop-Process -processName: Explorer -force
 
-
-Write-Output "Finished! I recommend logging out and back in"
-Write-Output "In the future, run `choco upgrade all` to get the latest software"
+Write-Output "Finished! In the future, run `choco upgrade all` to get the latest software"
