@@ -306,6 +306,7 @@ Start-Process https://aka.ms/wslstore
 Write-Output "installing nice powershell goodness. Buckle up."
 choco install conemu --yes
 
+Push-Location
 if (!(Test-Path 'C:\tmp')) {
     mkdir c:\tmp
 }
@@ -315,6 +316,7 @@ if (!(Test-Path 'c:\tmp\fonts')) {
     set-location c:\tmp\fonts
     .\install.ps1
 }
+Pop-Location
 
 # PowerShell Tooling for Git
 Install-Module –Name PowerShellGet –Force
