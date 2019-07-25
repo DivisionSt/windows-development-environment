@@ -254,6 +254,7 @@ Update-Environment-Path
 Write-Output "installing nice powershell goodness. Buckle up."
 choco install conemu --yes
 
+Push-Location
 if (!(Test-Path 'C:\tmp')) {
     mkdir c:\tmp
 }
@@ -263,6 +264,7 @@ if (!(Test-Path 'c:\tmp\fonts')) {
     set-location c:\tmp\fonts
     .\install.ps1
 }
+Pop-Location
 
 Install-Module -Name 'posh-git'
 Install-Module -Name 'oh-my-posh'
