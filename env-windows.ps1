@@ -296,6 +296,7 @@ choco install resharper --yes
 
 #
 # Windows Taskbar
+# https://www.scconfigmgr.com/2016/08/03/customize-pinned-items-on-taskbar-in-windows-10-1607-during-osd-with-configmgr/
 #
 Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
 # Force Windows Explorer restart so settings take effect
