@@ -10,10 +10,17 @@
 #
 # Functions
 #
-function Update-Environment-Path
-{
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") `
-        + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+function Update-Environment-Path {
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") `
+        + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+}
+
+function Push-User-Path($userPath) {
+    $path = [Environment]::GetEnvironmentVariable('Path', 'User')
+    $newpath = "$userPath;$path"
+    [Environment]::SetEnvironmentVariable("Path", $newpath, 'User')
+    Update-Environment-Path
 }
 
 #
@@ -29,9 +36,17 @@ Install-Module -Name PowerShellGet -Force
 #
 # Choco
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
-Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | iex
+Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
 Update-Environment-Path
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+# Utils
+Get-Command -Module Microsoft.PowerShell.Archive
+=======
+>>>>>>> 421eb06... Try to get the one interactive thing to the top
+>>>>>>> jamestharpe-main
 
 #
 # Set some windows explorer settings to be nice to developers
@@ -77,6 +92,16 @@ git config --global alias.standup "log --since yesterday --author $(git config u
 git config --global alias.everything "! git pull && git submodule update --init --recursive"
 git config --global alias.aliases "config --get-regexp alias"
 
+<<<<<<< HEAD
+=======
+# Font to support PowerShell Tooling:
+choco install cascadiacode --yes
+choco install cascadiamono --yes
+choco install cascadiacodepl --yes
+choco install cascadiamonopl --yes
+
+Write-Output 'Be sure to configure Windows Terminal fonts! Suggest using "fontFace": "Cascadia Code PL"'
+>>>>>>> jamestharpe-main
 
 #
 # AWS awscli
@@ -108,6 +133,24 @@ Update-Environment-Path
 #choco install python2 --yes
 #choco install jdk8 --yes
 #Update-Environment-Path
+<<<<<<< HEAD
+=======
+
+
+git clone https://github.com/pyenv-win/pyenv-win.git $env:USERPROFILE\.pyenv
+[Environment]::SetEnvironmentVariable("PYENV", "$env:USERPROFILE\.pyenv\pyenv-win", 'User')
+Push-User-Path "%PYENV%\bin"
+Push-User-Path "%PYENV%\shims"
+pyenv rehash
+pyenv install 2.7.9
+pyenv install 3.8.3
+pyenv global 3.8.3 # default to latest
+pyenv rehash
+python -m pip install -U pip
+pip install virtualenv
+Update-Environment-Path
+Write-Output "Python, Pyenv, and virtualenv installed! Use 'python3 -m venv <dir>' to create an environment"
+>>>>>>> jamestharpe-main
 
 # Node
 choco install nodejs.install --yes
@@ -119,7 +162,6 @@ npm install -g yo
 # npm install -g mocha
 npm install -g install-peerdeps
 npm install -g typescript
-# npm install prettier-eslint --save-dev
 
 #
 # Docker
@@ -137,6 +179,21 @@ npm install -g typescript
 #docker pull worpress
 #docker pull mysql
 #docker pull phpmyadmin
+<<<<<<< HEAD
+=======
+
+Update-Environment-Path
+
+#
+# Kubernetes
+#
+
+choco install minikube --yes
+choco install kubernetes-cli --yes
+
+# Note: VirtualBox sucks, see instructions here to run minikube: https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c
+# TLDR: run with `minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"`
+>>>>>>> jamestharpe-main
 
 
 # Yarn
@@ -148,33 +205,31 @@ npm install -g typescript
 # Grunt
 npm install -g grunt-cli
 
-# ESLint
-npm install -g eslint
-npm install -g babel-eslint
-npm install -g eslint-plugin-react
-npm install -g install-peerdeps
-install-peerdeps --dev eslint-config-airbnb
-
 #
 # VS Code
 #
 choco install visualstudiocode --yes # includes dotnet
 Update-Environment-Path
+
 code --install-extension robertohuertasm.vscode-icons
 code --install-extension CoenraadS.bracket-pair-colorizer
 code --install-extension eamodio.gitlens
+<<<<<<< HEAD
 ## todo: more of my packages
+=======
+code --install-extension oderwat.indent-rainbow
+code --install-extension sdras.night-owl
+Start-Process https://github.com/sdras/night-owl-vscode-theme
+
+>>>>>>> jamestharpe-main
 # PowerShell support
 code --install-extension ms-vscode.PowerShell
 # CSharp support
 code --install-extension ms-vscode.csharp
 # HTML, CSS, JavaScript support
 code --install-extension Zignd.html-css-class-completion
-code --install-extension lonefy.vscode-JS-CSS-HTML-formatter
 code --install-extension robinbentley.sass-indented
 code --install-extension dbaeumer.vscode-eslint
-code --install-extension RobinMalfait.prettier-eslint-vscode
-code --install-extension flowtype.flow-for-vscode
 code --install-extension dzannotti.vscode-babel-coloring
 code --install-extension esbenp.prettier-vscode
 code --install-extension formulahendry.auto-rename-tag
@@ -226,6 +281,16 @@ choco install fiddler --yes
 choco install winmerge --yes
 choco install postman --yes
 # choco install xenulinksleuth --yes
+<<<<<<< HEAD
+=======
+
+# InkScape
+#choco install inkscape --yes
+
+# Windows Terminal
+choco install microsoft-windows-terminal --yes
+
+>>>>>>> jamestharpe-main
 # File Management
 # choco install beyondcompare --yes
 choco install 7zip --yes
@@ -247,6 +312,73 @@ choco install paint.net --yes
 
 Update-Environment-Path
 
+# Windows Subsystem for Linux
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
+Update-Environment-Path
+wsl --set-default-version 2
+Start-Process https://aka.ms/wslstore
+
+#
+# Command-line niceness
+#
+Write-Output "installing nice powershell goodness. Buckle up."
+choco install conemu --yes
+
+Push-Location
+if (!(Test-Path 'C:\tmp')) {
+    mkdir c:\tmp
+}
+if (!(Test-Path 'c:\tmp\fonts')) {
+    write-host "installing fonts"
+    git clone https://github.com/powerline/fonts.git c:\tmp\fonts
+    set-location c:\tmp\fonts
+    .\install.ps1
+}
+Pop-Location
+
+# PowerShell Tooling for Git
+Install-Module –Name PowerShellGet –Force
+Install-Module posh-git -Force -Scope CurrentUser
+Install-Module oh-my-posh -Force -Scope CurrentUser
+Install-Module -Name 'Get-ChildItemColor' -AllowClobber
+Set-Prompt
+Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
+Add-Content $PROFILE "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
+
+# move in a nice powershell profile
+Set-ExecutionPolicy Unrestricted
+Unblock-File -Path ".\assets\Microsoft.PowerShell_profile.ps1"
+copy-item ".\assets\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell\"
+Set-ExecutionPolicy RemoteSigned
+
+# move in a nice conemu profile=
+Unblock-File -Path ".\assets\ConEmu.xml"
+copy-item ".\assets\ConEmu.xml" "$env:ProgramFiles\ConEmu\"
+copy-item ".\assets\ConEmu.xml" "$env:APPDATA\"
+
+
+#
+# Visual Studio
+#
+Write-Output "installing visual studio. probably wanna go make coffee now..."
+choco install visualstudio2019enterprise --yes
+choco install visualstudio2019-workload-azure --yes
+choco install visualstudio2019-workload-netweb --yes
+choco install nuget.commandline --yes
+# choco install resharper-platform --yes
+choco install resharper --yes
+
+
+#
+# Windows Taskbar
+# https://www.scconfigmgr.com/2016/08/03/customize-pinned-items-on-taskbar-in-windows-10-1607-during-osd-with-configmgr/
+#
+Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
+# Force Windows Explorer restart so settings take effect
+Stop-Process -processName: Explorer -force
+
+<<<<<<< HEAD
 
 #
 # Command-line niceness
@@ -302,4 +434,6 @@ Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
 # Force Windows Explorer restart so settings take effect
 Stop-Process -processName: Explorer -force
 
+=======
+>>>>>>> jamestharpe-main
 Write-Output "Finished! In the future, run `choco upgrade all` to get the latest software"
