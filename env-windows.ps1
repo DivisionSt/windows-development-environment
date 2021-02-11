@@ -322,14 +322,10 @@ Pop-Location
 Install-Module –Name PowerShellGet –Force
 Install-Module posh-git -Force -Scope CurrentUser
 Install-Module oh-my-posh -Force -Scope CurrentUser
-Install-Module -Name 'Get-ChildItemColor'
+Install-Module -Name 'Get-ChildItemColor' -AllowClobber
 Set-Prompt
 Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
 Add-Content $PROFILE "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
-
-Install-Module -Name 'posh-git'
-Install-Module -Name 'oh-my-posh'
-Install-Module -Name 'Get-ChildItemColor' -AllowClobber
 
 # move in a nice powershell profile
 Set-ExecutionPolicy Unrestricted
