@@ -93,7 +93,7 @@ choco install cascadiamono --yes
 choco install cascadiacodepl --yes
 choco install cascadiamonopl --yes
 
-Write-Output 'Be sure to configure Windows Terminal fonts! Suggest using "fontFace": "Cascadia Code PL"'
+Write-Output '!! Be sure to configure Windows Terminal fonts! Suggest using "fontFace": "Cascadia Code PL"'
 
 #
 # AWS awscli
@@ -168,8 +168,7 @@ npm install -g typescript
 #docker pull worpress
 #docker pull mysql
 #docker pull phpmyadmin
-
-Update-Environment-Path
+#Update-Environment-Path
 
 #
 # Kubernetes
@@ -189,7 +188,7 @@ Update-Environment-Path
 #npm install -g bower
 
 # Grunt
-npm install -g grunt-cli
+#npm install -g grunt-cli
 
 #
 # VS Code
@@ -209,12 +208,12 @@ code --install-extension ms-vscode.PowerShell
 # CSharp support
 code --install-extension ms-vscode.csharp
 # HTML, CSS, JavaScript support
-code --install-extension Zignd.html-css-class-completion
-code --install-extension robinbentley.sass-indented
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension dzannotti.vscode-babel-coloring
-code --install-extension esbenp.prettier-vscode
-code --install-extension formulahendry.auto-rename-tag
+#code --install-extension Zignd.html-css-class-completion
+#code --install-extension robinbentley.sass-indented
+#code --install-extension dbaeumer.vscode-eslint
+#code --install-extension dzannotti.vscode-babel-coloring
+#code --install-extension esbenp.prettier-vscode
+#code --install-extension formulahendry.auto-rename-tag
 # NPM support
 code --install-extension eg2.vscode-npm-script
 code --install-extension christian-kohler.npm-intellisense
@@ -253,7 +252,7 @@ code --install-extension mdickin.markdown-shortcuts
 # Basic Utilities
 #
 choco install slack --yes
-choco install notepadplusplus --yes
+#choco install notepadplusplus --yes
 choco install notepad3 --yes
 choco install sublimetext3 --yes
 choco install azure-cli --yes
@@ -280,11 +279,11 @@ choco install 7zip --yes
 choco install googlechrome --yes
 choco install googlechrome.canary --yes
 choco install firefox --yes
+choco install brave --yes
 
 # Misc
 choco install sysinternals --yes
 choco install procexp --yes
-# choco install awscli --yes
 choco install firacode --yes # See https://www.youtube.com/watch?v=KI6m_B1f8jc
 choco install everything --yes
 choco install paint.net --yes
@@ -317,7 +316,6 @@ if (!(Test-Path 'c:\tmp\fonts')) {
 Pop-Location
 
 # PowerShell Tooling for Git
-Install-Module –Name PowerShellGet –Force
 Install-Module posh-git -Force -Scope CurrentUser
 Install-Module oh-my-posh -Force -Scope CurrentUser
 Install-Module -Name 'Get-ChildItemColor' -AllowClobber
@@ -356,52 +354,6 @@ choco install resharper --yes
 Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
 # Force Windows Explorer restart so settings take effect
 Stop-Process -processName: Explorer -force
-
-
-#
-# Command-line niceness
-#
-Write-Output "installing nice powershell goodness. Buckle up."
-choco install conemu --yes
-
-Push-Location
-if (!(Test-Path 'C:\tmp')) {
-    mkdir c:\tmp
-}
-if (!(Test-Path 'c:\tmp\fonts')) {
-    write-host "installing fonts"
-    git clone https://github.com/powerline/fonts.git c:\tmp\fonts
-    set-location c:\tmp\fonts
-    .\install.ps1
-}
-Pop-Location
-
-Install-Module -Name 'posh-git'
-Install-Module -Name 'oh-my-posh'
-Install-Module -Name 'Get-ChildItemColor' -AllowClobber
-
-# move in a nice powershell profile
-Set-ExecutionPolicy Unrestricted
-Unblock-File -Path ".\assets\Microsoft.PowerShell_profile.ps1"
-copy-item ".\assets\Microsoft.PowerShell_profile.ps1" "$env:USERPROFILE\Documents\WindowsPowerShell\"
-Set-ExecutionPolicy RemoteSigned
-
-# move in a nice conemu profile=
-Unblock-File -Path ".\assets\ConEmu.xml"
-copy-item ".\assets\ConEmu.xml" "$env:ProgramFiles\ConEmu\"
-copy-item ".\assets\ConEmu.xml" "$env:APPDATA\"
-
-
-#
-# Visual Studio
-#
-Write-Output "installing visual studio. probably wanna go make coffee now..."
-choco install visualstudio2019enterprise --yes
-choco install visualstudio2019-workload-azure --yes
-choco install visualstudio2019-workload-netweb --yes
-choco install nuget.commandline --yes
-# choco install resharper-platform --yes
-choco install resharper --yes
 
 
 #
