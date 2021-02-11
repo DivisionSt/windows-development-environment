@@ -175,8 +175,8 @@ Update-Environment-Path
 # Kubernetes
 #
 
-choco install minikube --yes
-choco install kubernetes-cli --yes
+#choco install minikube --yes
+#choco install kubernetes-cli --yes
 
 # Note: VirtualBox sucks, see instructions here to run minikube: https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c
 # TLDR: run with `minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"`
