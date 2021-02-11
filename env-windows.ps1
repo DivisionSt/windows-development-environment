@@ -39,14 +39,9 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
 Update-Environment-Path
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 # Utils
 Get-Command -Module Microsoft.PowerShell.Archive
-=======
->>>>>>> 421eb06... Try to get the one interactive thing to the top
->>>>>>> jamestharpe-main
 
 #
 # Set some windows explorer settings to be nice to developers
@@ -92,8 +87,6 @@ git config --global alias.standup "log --since yesterday --author $(git config u
 git config --global alias.everything "! git pull && git submodule update --init --recursive"
 git config --global alias.aliases "config --get-regexp alias"
 
-<<<<<<< HEAD
-=======
 # Font to support PowerShell Tooling:
 choco install cascadiacode --yes
 choco install cascadiamono --yes
@@ -101,7 +94,6 @@ choco install cascadiacodepl --yes
 choco install cascadiamonopl --yes
 
 Write-Output 'Be sure to configure Windows Terminal fonts! Suggest using "fontFace": "Cascadia Code PL"'
->>>>>>> jamestharpe-main
 
 #
 # AWS awscli
@@ -133,8 +125,6 @@ Update-Environment-Path
 #choco install python2 --yes
 #choco install jdk8 --yes
 #Update-Environment-Path
-<<<<<<< HEAD
-=======
 
 
 git clone https://github.com/pyenv-win/pyenv-win.git $env:USERPROFILE\.pyenv
@@ -150,7 +140,6 @@ python -m pip install -U pip
 pip install virtualenv
 Update-Environment-Path
 Write-Output "Python, Pyenv, and virtualenv installed! Use 'python3 -m venv <dir>' to create an environment"
->>>>>>> jamestharpe-main
 
 # Node
 choco install nodejs.install --yes
@@ -179,8 +168,6 @@ npm install -g typescript
 #docker pull worpress
 #docker pull mysql
 #docker pull phpmyadmin
-<<<<<<< HEAD
-=======
 
 Update-Environment-Path
 
@@ -193,7 +180,6 @@ choco install kubernetes-cli --yes
 
 # Note: VirtualBox sucks, see instructions here to run minikube: https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c
 # TLDR: run with `minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"`
->>>>>>> jamestharpe-main
 
 
 # Yarn
@@ -214,14 +200,10 @@ Update-Environment-Path
 code --install-extension robertohuertasm.vscode-icons
 code --install-extension CoenraadS.bracket-pair-colorizer
 code --install-extension eamodio.gitlens
-<<<<<<< HEAD
-## todo: more of my packages
-=======
 code --install-extension oderwat.indent-rainbow
 code --install-extension sdras.night-owl
 Start-Process https://github.com/sdras/night-owl-vscode-theme
 
->>>>>>> jamestharpe-main
 # PowerShell support
 code --install-extension ms-vscode.PowerShell
 # CSharp support
@@ -281,8 +263,6 @@ choco install fiddler --yes
 choco install winmerge --yes
 choco install postman --yes
 # choco install xenulinksleuth --yes
-<<<<<<< HEAD
-=======
 
 # InkScape
 #choco install inkscape --yes
@@ -290,7 +270,6 @@ choco install postman --yes
 # Windows Terminal
 choco install microsoft-windows-terminal --yes
 
->>>>>>> jamestharpe-main
 # File Management
 # choco install beyondcompare --yes
 choco install 7zip --yes
@@ -378,7 +357,6 @@ Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
 # Force Windows Explorer restart so settings take effect
 Stop-Process -processName: Explorer -force
 
-<<<<<<< HEAD
 
 #
 # Command-line niceness
@@ -434,6 +412,4 @@ Import-StartLayout "assets\TaskBar.xml" -MountPath $env:SystemDrive\
 # Force Windows Explorer restart so settings take effect
 Stop-Process -processName: Explorer -force
 
-=======
->>>>>>> jamestharpe-main
 Write-Output "Finished! In the future, run `choco upgrade all` to get the latest software"
