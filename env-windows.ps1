@@ -199,6 +199,7 @@ code --install-extension robertohuertasm.vscode-icons
 code --install-extension CoenraadS.bracket-pair-colorizer
 code --install-extension eamodio.gitlens
 code --install-extension oderwat.indent-rainbow
+code --install-extension johnpapa.vscode-peacock
 code --install-extension sdras.night-owl
 Start-Process https://github.com/sdras/night-owl-vscode-theme
 
@@ -227,7 +228,8 @@ code --install-extension christian-kohler.npm-intellisense
 # code --install-extension PeterJausovec.vscode-docker
 # Markdown Support 
 code --install-extension yzhang.markdown-all-in-one
-code --install-extension mdickin.markdown-shortcuts
+code --install-extension davidanson.vscode-markdownlint
+code --install-extension vscode-nested-tags.vscode-nested-tags
 
 # #
 # # MySQL
